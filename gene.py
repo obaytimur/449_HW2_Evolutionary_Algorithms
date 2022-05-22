@@ -7,14 +7,14 @@ import random
 class gene:
     global height, width
 
-    def __init__(self, x, y, radius, red, green, blue, alpha):
-        self.x = 0
-        self.y = 0
-        self.radius = 0
-        self.red = 0
-        self.green = 0
-        self.blue = 0
-        self.alpha = 0
+    def __init__(self, x=0, y=0, radius=0, red=0, green=0, blue=0, alpha=0):
+        self.x = x
+        self.y = y
+        self.radius = radius
+        self.red = red
+        self.green = green
+        self.blue = blue
+        self.alpha = alpha
 
     # random value initialization for the gene variables
     def rand_value(self):
