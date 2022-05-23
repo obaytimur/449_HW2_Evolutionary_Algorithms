@@ -5,7 +5,6 @@ import random
 
 
 class gene:
-    global height, width
 
     def __init__(self, x=0, y=0, radius=0, red=0, green=0, blue=0, alpha=0):
         self.x = x
@@ -18,9 +17,9 @@ class gene:
 
     # random value initialization for the gene variables
     def rand_value(self):
-        self.x = random.randint(-50, width + 50)
-        self.y = random.randint(-50, height + 50)
-        self.radius = random.randint(0, min(height, width) / 2)
+        self.x = random.randint(-50, 180 + 50)
+        self.y = random.randint(-50, 180 + 50)
+        self.radius = random.randint(0, 90)
         self.red = random.randint(0, 255)
         self.green = random.randint(0, 255)
         self.blue = random.randint(0, 255)
@@ -31,9 +30,9 @@ class gene:
     # second line checks x<0 and y<0 points
     # third line checks x>width and y>height points
     def is_in_image(self):
-        if (0 < self.x < width and 0 < self.y < height) \
+        if (0 < self.x < 180 and 0 < self.y < 180) \
                 or abs(self.x) < self.radius or abs(self.y) < self.radius \
-                or (self.x - width) < self.radius or (self.y - height) < self.radius:
+                or (self.x - 180) < self.radius or (self.y - 180) < self.radius:
             return True
         else:
             return False

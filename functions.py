@@ -6,7 +6,7 @@ from copy import deepcopy as kopya
 
 def create_pop(num_inds, num_genes):
     pop_list = []
-    for index in range(len(num_inds)):
+    for index in range(num_inds):
         ind_var = individual(num_genes)
         pop_list.append(kopya(ind_var))
     return pop_list
