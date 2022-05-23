@@ -14,7 +14,7 @@ def create_pop(num_inds, num_genes):
 
 def evaluate_pop_fitness(pop_list):
     for index in pop_list:
-        index().evaluate_fitness()
+        index.evaluate_fitness()
     return pop_list
 
 
@@ -60,8 +60,10 @@ def crossover_two_parent(parent1, parent2):
 
 def crossover_pop(pop_list):
     child_list = []
-    for index in range(len(pop_list)):
-        child_list.append(crossover_two_parent(pop_list[index*2], pop_list[index*2 + 1]))
+    for index in range(int(len(pop_list)/2)):
+        childs_var = crossover_two_parent(pop_list[index*2], pop_list[index*2 + 1])
+        child_list.append(childs_var[0])
+        child_list.append(childs_var[1])
     return child_list
 
 
@@ -70,8 +72,8 @@ def mutation_gene(mutation_type, mutated_gene):
         mutated_gene.rand_value()
         return mutated_gene
     else:
-        mutated_gene.x += random.randint(int(-0.25*mutated_gene.x), int(0.25*mutated_gene.x))
-        mutated_gene.y += random.randint(int(-0.25*mutated_gene.y), int(0.25*mutated_gene.y))
+        mutated_gene.x += random.randint(int(-0.25*abs(mutated_gene.x)), int(0.25*abs(mutated_gene.x)))
+        mutated_gene.y += random.randint(int(-0.25*abs(mutated_gene.y)), int(0.25*abs(mutated_gene.y)))
         mutated_gene.radius = random.randint(max(0, mutated_gene.radius-10), max(0, mutated_gene.radius+10))
         mutated_gene.red = random.randint(max(0, mutated_gene.red-64), min(255, mutated_gene.red+64))
         mutated_gene.green = random.randint(max(0, mutated_gene.green-64), min(255, mutated_gene.green+64))
@@ -88,9 +90,10 @@ def mutation_ind(mutation_type, mutation_prob, indiv: individual, num_genes):
 
 
 def mutation_pop(mutation_type, mutation_prob, pop_list: list, num_genes):
+    mutated_list = []
     for index in range(len(pop_list)):
-        mutation_ind(mutation_type, mutation_prob, pop_list[index], num_genes)
-    return None
+        mutated_list.append(mutation_ind(mutation_type, mutation_prob, pop_list[index], num_genes))
+    return mutated_list
 
 
 

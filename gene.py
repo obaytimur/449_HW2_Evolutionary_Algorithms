@@ -23,16 +23,16 @@ class gene:
         self.red = random.randint(0, 255)
         self.green = random.randint(0, 255)
         self.blue = random.randint(0, 255)
-        self.blue = random.random()
+        self.alpha = random.random()
 
     # function that checks whether the point is in picture or reach it
     # the first line checks inside
     # second line checks x<0 and y<0 points
     # third line checks x>width and y>height points
     def is_in_image(self):
-        if (0 < self.x < 180 and 0 < self.y < 180) \
-                or abs(self.x) < self.radius or abs(self.y) < self.radius \
-                or (self.x - 180) < self.radius or (self.y - 180) < self.radius:
+        if (-self.radius < self.x < 180 + self.radius and -self.radius < self.y < 180 + self.radius): \
+#                or (abs(self.x) < self.radius and abs(self.y) < self.radius) \
+#                or ((self.x - 180) < self.radius and (self.y - 180) < self.radius):
             return True
         else:
             return False
